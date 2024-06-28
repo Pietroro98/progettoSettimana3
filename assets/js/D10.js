@@ -151,7 +151,7 @@ console.log("****** ESERCIZIO C ******");
 let me = {
   name: "Pietro",
   surname: "Romano",
-  age: "25",
+  age: "26",
 };
 console.log(me);
 
