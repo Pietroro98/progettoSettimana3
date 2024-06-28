@@ -541,38 +541,96 @@ console.log(updatedMovies);
 console.log("****** ESERCIZIO 20 ******");
 
 const selectContainer = () => {
-const containerElement = document.getElementById("container");
-return containerElement;
+  const containerElement = document.getElementById("container");
+  return containerElement;
 };
 
-selectContainer();
+const containerElement = selectContainer();
+
+if (containerElement) {
+  console.log("container trovato", containerElement);
+} else {
+  console.log("container non trovato"); //se tolgo il container da html mi spunterà il messaggio di errore.
+}
 
 /* ESERCIZIO 21
   Scrivi una funzione per selezionare ogni tag <td> all'interno della pagina.
 */
 console.log("****** ESERCIZIO 21 ******");
 
+const selectTd = () => {
+  const tdElements = document.querySelectorAll("td");
+  return tdElements;
+};
+
+console.log(selectTd());
 
 /* ESERCIZIO 22
   Scrivi una funzione che, tramite un ciclo, stampa in console il testo contenuto in ogni tag <td> all'interno della pagina.
 */
 console.log("****** ESERCIZIO 22 ******");
+
+function stampaTd() {
+  const tdElements = document.querySelectorAll("td");
+  for (let i = 0; i < tdElements.length; i++) {
+    console.log(tdElements[i].innerHTML);
+  }
+}
+stampaTd();
+
 /* ESERCIZIO 23
   Scrivi una funzione per aggiungere un background di colore rosso a ogni link all'interno della pagina.
 */
 console.log("****** ESERCIZIO 23 ******");
+
+const aggiungiColoreRed = () => {
+  const linkElements = document.querySelectorAll("a");
+
+  linkElements.forEach((linkElement) => {
+    linkElement.style.backgroundColor = "red";
+  });
+};
+
+aggiungiColoreRed();
+
 /* ESERCIZIO 24
   Scrivi una funzione per aggiungere un nuovo elemento alla lista non ordinata con id "myList".
 */
 console.log("****** ESERCIZIO 24 ******");
+
+function newElement() {
+  const newList = document.getElementById("myList");
+  const nuovoElemento = document.createElement("li");
+  nuovoElemento.innerText = "Pasta al forno";
+  newList.appendChild(nuovoElemento);
+}
+newElement();
+
 /* ESERCIZIO 25
   Scrivi una funzione per svuotare la lista non ordinata con id "myList".
 */
 console.log("****** ESERCIZIO 25 ******");
+
+function svuotaLista() {
+  const newList = document.getElementById("myList");
+  newList.innerHTML = "";
+}
+// svuotaLista(); //togliendo il commendo la lista si svuota
+
 /* ESERCIZIO 26
   Scrivi una funzione per aggiungere ad ogni tag <tr> la classe CSS "test"
 */
 console.log("****** ESERCIZIO 26 ******");
+
+function aggiungiClasse() {
+  const trElements = document.querySelectorAll("tr");
+  trElements.forEach((t) => {
+    t.classList.add("test");
+  });
+}
+
+aggiungiClasse();
+
 // [EXTRA] JS Avanzato
 
 /* ESERCIZIO 27
@@ -587,6 +645,19 @@ console.log("****** ESERCIZIO 26 ******");
 
 */
 console.log("****** ESERCIZIO 27 ******");
+
+const halfTree = (altezzaAlbero) => {     // do un paramentro ad halfTree che prende l'altezza come parametro
+  if (typeof altezzaAlbero === "number" && altezzaAlbero > 0) {  //verifico che 'laltezzaAlbero sia un numero e anche positivo maggiore di 0
+    for (let i = 1; i <= altezzaAlbero; i++) {   //ciclo for che va da 1 ad altezzaAlbero
+      console.log("*".repeat(i));
+    }
+  }
+};
+
+halfTree(8);
+console.log("** ");
+console.log("Buon natale!");
+
 /* ESERCIZIO 28
   Crea una funzione chiamata "tree" che riceve un numero come parametro e costruisce un albero di "*" (asterischi) dell'altezza fornita.
 
@@ -599,8 +670,27 @@ console.log("****** ESERCIZIO 27 ******");
 
 */
 console.log("****** ESERCIZIO 28 ******");
+
+const tree = (altezzaAlbero) => {
+  if (
+    typeof altezzaAlbero === "number" &&
+    altezzaAlbero > 0 &&
+    Number.isInteger(altezzaAlbero) // verifico che altezzaAlbero sia un numero
+  ) {
+    for (let i = 1; i <= altezzaAlbero; i++) {
+      //creo una stringa di spazi vuoti per centrare gli asterischi
+      // Diminuisco il numero degli spazi ogni volta che altezzaAlbero diminuisce
+      const linea = " ".repeat(altezzaAlbero - i) + "*".repeat(2 * i - 1);  //creo una stringa di asterischi con incremento dispari in modo che l'albero si mette al centro
+      console.log(linea);
+    }
+  }
+};
+tree(8)
+console.log("      **");
+console.log("Buon natale!");
 /* ESERCIZIO 29
   Crea una funzione chiamata "isItPrime" che riceve un numero come parametro e ritorna true se il numero fornito è un numero primo.
 */
 
 console.log("****** ESERCIZIO 29 ******");
+
