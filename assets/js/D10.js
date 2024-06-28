@@ -253,8 +253,9 @@ console.log(deleteOne("Romano", false));
   Es.: onlyLetters("I have 4 dogs") => ritorna "I have dogs"
 */
 console.log("****** ESERCIZIO 5 ******");
+//esercizio fatto con ciclo for ma lungo
 
-function onlyLetters(string) {
+/*function onlyLetters(string) {
   let result = "";
   for (let i = 0; i < string.length; i++) {
     if (!isDigit(string[i])) {
@@ -263,11 +264,13 @@ function onlyLetters(string) {
   }
   return result;
 }
-
 function isDigit(char) {
   return char >= "0" && char <= "9";
-}
+}*/
 
+function onlyLetters(string) {
+  return (string = string.replace(/\d+/g, " ")); // \d indica tutti i numeri, e /g indica di fare la sostituzione globale, e con gli apici vuoti effettivamente mi toglie
+}
 console.log(onlyLetters("I have 4 dogs"));
 
 /* ESERCIZIO 6
@@ -378,83 +381,198 @@ console.log(isTodayMyBirthday());
   in esso la proprietà chiamata come la stringa passata come secondo parametro.
 */
 console.log("****** ESERCIZIO 11 ******");
-// Per svolgere questo esercizio ho preso in considerazione l'oggetto creato nell'esercizio nuemro C : (me).
+// Per svolgere questo esercizio ho preso in considerazione l'oggetto creato nell'esercizio numero C : (me).
 
 // Do come oggetto ed una stringa come paramentri
 const deleteProp = (oggetto, stringa) => {
   const oggettoModificato = { ...oggetto }; //copio dall'oggetto originale
-  delete oggettoModificato[stringa];      //elimino la proprietà specificata
-  return oggettoModificato;  // ritorna l'oggetto modificato
+  delete oggettoModificato[stringa]; //elimino la proprietà specificata
+  return oggettoModificato; // ritorna l'oggetto modificato
 };
-const nomeProprieta = 'surname';     //scrivo la proprietà da eliminare passata come secondo paramento all'inizio
-const oggettoSenzaProprieta = deleteProp(me, nomeProprieta);  //applico la funzione
+const nomeProprieta = "surname"; //scrivo la proprietà da eliminare passata come secondo paramento all'inizio
+const oggettoSenzaProprieta = deleteProp(me, nomeProprieta); //applico la funzione
 
-console.log('Oggetto originale:', me);
-console.log('oggetto senza proprietà:', oggettoSenzaProprieta);
+console.log("Oggetto originale:", me);
+console.log("oggetto senza proprietà:", oggettoSenzaProprieta);
 
 /* ESERCIZIO 12
   Scrivi una funzione chiamata "newestMovie" che trova il film più recente nell'array "movies" fornito.
 */
+console.log("****** ESERCIZIO 12 ******");
+
+const newestMovie = (movies) => {
+  let filmPiuRecente = movies[0];
+  for (let i = 1; i < movies.length; i++) {
+    if (movies[i].Year > filmPiuRecente.Year) {
+      filmPiuRecente = movies[i];
+    }
+  }
+
+  return filmPiuRecente;
+};
+
+const filmPiuRecente = newestMovie(movies);
+console.log("Film più recente:", filmPiuRecente);
 
 /* ESERCIZIO 13
   Scrivi una funzione chiamata countMovies che ritorna il numero di film contenuti nell'array "movies" fornito.
 */
+console.log("****** ESERCIZIO 13 ******");
+
+const countMovies = (movies) => {
+  return movies.length;
+};
+const numeroDiFilm = countMovies(movies);
+
+console.log("Film contenuti nell'array:", numeroDiFilm);
 
 /* ESERCIZIO 14
   Scrivi una funzione chiamata "onlyTheYears" che crea un array con solamente gli anni di uscita dei film contenuti nell'array "movies" fornito.
 */
+console.log("****** ESERCIZIO 14 ******");
+
+const onlyTheYears = (movies) => {
+  const anniFilm = movies.map((film) => film.Year);
+  return anniFilm;
+};
+
+const anniFilm = onlyTheYears(movies);
+
+console.log("Anno uscita film:", anniFilm);
 
 /* ESERCIZIO 15
   Scrivi una funzione chiamata "onlyInLastMillennium" che ritorna solamente i film prodotto nel millennio scorso contenuti nell'array "movies" fornito.
 */
+console.log("****** ESERCIZIO 15 ******");
+
+const onlyInLastMillennium = (movies) => {
+  const filmMillennioScorso = movies.filter((film) => {
+    const annoProduzione = film.Year;
+    return annoProduzione < "2000";
+  });
+
+  return filmMillennioScorso;
+};
+
+const filmMillennioScorso = onlyInLastMillennium(movies);
+console.log("Film prodotti nel millennio scorso:", filmMillennioScorso);
 
 /* ESERCIZIO 16
   Scrivi una funzione chiamata "sumAllTheYears" che ritorna la somma di tutti gli anni in cui sono stati prodotti i film contenuti nell'array "movies" fornito.
 */
+console.log("****** ESERCIZIO 16 ******");
+
+const sumAllTheYears = (movies) => {
+  let sommaAnni = 0;
+  for (let i = 0; i < movies.length; i++) {
+    // uso il ciclo for per iterare su titti gli elementi dell'array
+    sommaAnni += Number(movies[i].Year); //aggiungo l'anno di ogni film a sommaAnni e scrivo la funzione number che prende da movies la stringa contenente l'anno e la converte in num intero.
+  }
+  return sommaAnni;
+};
+
+const sommaAnniDeiFilm = sumAllTheYears(movies);
+
+console.log("Il risultato è: ", sommaAnniDeiFilm);
 
 /* ESERCIZIO 17
   Scrivi una funzione chiamata "searchByTitle" che riceve una stringa come parametro e ritorna i film nell'array "movies" fornito che la contengono nel titolo.
 */
+console.log("****** ESERCIZIO 17 ******");
+
+const searchByTitle = (movies, stringa) => {
+  const filmRicercati = movies.filter((film) => {
+    return film.Title.includes(stringa);
+  });
+  return filmRicercati;
+};
+const ricerca = searchByTitle(movies, "Lord");
+console.log(ricerca);
 
 /* ESERCIZIO 18
   Scrivi una funzione chiamata "searchAndDivide" che riceve una stringa come parametro e ritorna un oggetto contenente due array: "match" e "unmatch".
   "match" deve includere tutti i film dell'array "movies" fornito che contengono la stringa fornita all'interno del proprio titolo, mentre "unmatch" deve includere tutti i rimanenti.
 */
+console.log("****** ESERCIZIO 18 ******");
+
+const searchAndDivide = (movies, searchString) => {
+  const match = [];
+  const unmatch = []; //scrivo gli array che devono contenere i film specifici
+
+  movies.reduce((acc, film) => {
+    if (film.Title.includes(searchString)) {
+      match.push(film);
+    } else {
+      unmatch.push(film);
+    }
+    return acc;
+  });
+
+  return { match, unmatch };
+};
+
+const risultatoRicerca = searchAndDivide(movies, "Avengers");
+console.log(risultatoRicerca);
 
 /* ESERCIZIO 19
   Scrivi una funzione chiamata "removeIndex" che riceve un numero come parametro e ritorna l'array "movies" fornito privo dell'elemento nella posizione ricevuta come parametro.
 */
+console.log("****** ESERCIZIO 19 ******");
+
+const removeIndex = (indexToRemove, movies) => {
+  if (indexToRemove >= 0 && indexToRemove < movies.length) {
+    //verifico che l'indice sia maggiore o uguale a zero e anche che l'indice non superi la lunghezza dell'array
+    movies.splice(indexToRemove, 1); //uso splice per rimuovere l'elemento dall'array l'indice specificato e con 1 dico che deve essere rimosso un solo elemento , mentre se l'indice non è valido stamperà in console il messaggio di errore
+  } else {
+    console.log("Indice non valido.");
+  }
+  return movies; //ritorna all'array movies se non trova l'indice e lo stampa senza rimuovere niente
+};
+
+const indexToRemove = 5; // in questo caso sto togliendo il sesto fim dell'array movies, se do come indice 14, quindi più della lughezza dell'array mi darà il comando 'indice non valido'.
+const updatedMovies = removeIndex(indexToRemove, movies.slice());
+console.log(updatedMovies);
 
 // DOM (nota: gli elementi che selezionerai non si trovano realmente nella pagina)
 
 /* ESERCIZIO 20
   Scrivi una funzione per selezionare l'elemento dotato di id "container" all'interno della pagina.
 */
+console.log("****** ESERCIZIO 20 ******");
+
+const selectContainer = () => {
+const containerElement = document.getElementById("container");
+return containerElement;
+};
+
+selectContainer();
 
 /* ESERCIZIO 21
   Scrivi una funzione per selezionare ogni tag <td> all'interno della pagina.
 */
+console.log("****** ESERCIZIO 21 ******");
+
 
 /* ESERCIZIO 22
   Scrivi una funzione che, tramite un ciclo, stampa in console il testo contenuto in ogni tag <td> all'interno della pagina.
 */
-
+console.log("****** ESERCIZIO 22 ******");
 /* ESERCIZIO 23
   Scrivi una funzione per aggiungere un background di colore rosso a ogni link all'interno della pagina.
 */
-
+console.log("****** ESERCIZIO 23 ******");
 /* ESERCIZIO 24
   Scrivi una funzione per aggiungere un nuovo elemento alla lista non ordinata con id "myList".
 */
-
+console.log("****** ESERCIZIO 24 ******");
 /* ESERCIZIO 25
   Scrivi una funzione per svuotare la lista non ordinata con id "myList".
 */
-
+console.log("****** ESERCIZIO 25 ******");
 /* ESERCIZIO 26
   Scrivi una funzione per aggiungere ad ogni tag <tr> la classe CSS "test"
 */
-
+console.log("****** ESERCIZIO 26 ******");
 // [EXTRA] JS Avanzato
 
 /* ESERCIZIO 27
@@ -468,7 +586,7 @@ console.log('oggetto senza proprietà:', oggettoSenzaProprieta);
   ***
 
 */
-
+console.log("****** ESERCIZIO 27 ******");
 /* ESERCIZIO 28
   Crea una funzione chiamata "tree" che riceve un numero come parametro e costruisce un albero di "*" (asterischi) dell'altezza fornita.
 
@@ -480,9 +598,9 @@ console.log('oggetto senza proprietà:', oggettoSenzaProprieta);
   *****
 
 */
-
+console.log("****** ESERCIZIO 28 ******");
 /* ESERCIZIO 29
   Crea una funzione chiamata "isItPrime" che riceve un numero come parametro e ritorna true se il numero fornito è un numero primo.
 */
 
-/* Questo array viene usato per gli esercizi. Non modificarlo. */
+console.log("****** ESERCIZIO 29 ******");
