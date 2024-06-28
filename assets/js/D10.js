@@ -646,9 +646,12 @@ aggiungiClasse();
 */
 console.log("****** ESERCIZIO 27 ******");
 
-const halfTree = (altezzaAlbero) => {     // do un paramentro ad halfTree che prende l'altezza come parametro
-  if (typeof altezzaAlbero === "number" && altezzaAlbero > 0) {  //verifico che 'laltezzaAlbero sia un numero e anche positivo maggiore di 0
-    for (let i = 1; i <= altezzaAlbero; i++) {   //ciclo for che va da 1 ad altezzaAlbero
+const halfTree = (altezzaAlbero) => {
+  // do un paramentro ad halfTree che prende l'altezza come parametro
+  if (typeof altezzaAlbero === "number" && altezzaAlbero > 0) {
+    //verifico che 'laltezzaAlbero sia un numero e anche positivo maggiore di 0
+    for (let i = 1; i <= altezzaAlbero; i++) {
+      //ciclo for che va da 1 ad altezzaAlbero
       console.log("*".repeat(i));
     }
   }
@@ -680,12 +683,12 @@ const tree = (altezzaAlbero) => {
     for (let i = 1; i <= altezzaAlbero; i++) {
       //creo una stringa di spazi vuoti per centrare gli asterischi
       // Diminuisco il numero degli spazi ogni volta che altezzaAlbero diminuisce
-      const linea = " ".repeat(altezzaAlbero - i) + "*".repeat(2 * i - 1);  //creo una stringa di asterischi con incremento dispari in modo che l'albero si mette al centro
+      const linea = " ".repeat(altezzaAlbero - i) + "*".repeat(2 * i - 1); //creo una stringa di asterischi con incremento dispari in modo che l'albero si mette al centro
       console.log(linea);
     }
   }
 };
-tree(8)
+tree(8);
 console.log("      **");
 console.log("Buon natale!");
 /* ESERCIZIO 29
@@ -694,3 +697,12 @@ console.log("Buon natale!");
 
 console.log("****** ESERCIZIO 29 ******");
 
+const isItPrime = (number) => {
+  if (number % 2 !== 0 || number === 2) {
+    return true;
+  } else {
+    return false;
+  }
+};
+
+console.log(isItPrime(9));
